@@ -3,11 +3,15 @@ package ua.epam.spring.core;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.epam.spring.core.beans.Client;
+import ua.epam.spring.core.beans.Event;
 import ua.epam.spring.core.loggers.EventLogger;
+
+import java.util.List;
 
 public class App {
     private Client client;
     private EventLogger eventLogger;
+    private List<String> eventMessages;
 
     public App(Client client, EventLogger eventLogger) {
         this.client = client;
@@ -21,11 +25,20 @@ public class App {
 //        app.logEvent("Some event for user 1");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
-        app.logEvent("Some event for user 1");
+        for(String message: app.eventMessages) {
+            Event event = (Event) ctx.getBean("event");
+            event.setMsg(message);
+            app.logEvent(event);
+        }
     }
 
-    private void logEvent(String msg) {
-        String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(message);
+    private void logEvent(Event event) {
+        String message = event.getMsg().replaceAll(client.getId(), client.getFullName());
+        event.setMsg(message);
+        eventLogger.logEvent(event);
+    }
+
+    public void setEventMessages(List<String> eventMessages) {
+        this.eventMessages = eventMessages;
     }
 }
