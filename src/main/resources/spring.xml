@@ -8,7 +8,10 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="ua.epam.spring.core.loggers.ConsoleEventLogger"/>
+    <bean id="eventLogger" class="ua.epam.spring.core.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="qwerty.log"/>
+        <constructor-arg value="2"/>
+    </bean>
 
     <bean id="event" class="ua.epam.spring.core.beans.Event" scope="prototype">
         <constructor-arg>
@@ -23,10 +26,7 @@
             <list>
                 <value>Some event from user 1</value>
                 <value>Some event from user 2</value>
-                <value>Some event from user 2</value>
-                <value>Some event from user 2</value>
-                <value>Some event from user 2</value>
-                <value>Some event from user 1</value>
+                <value>Some event from user 3</value>
             </list>
         </property>
     </bean>
