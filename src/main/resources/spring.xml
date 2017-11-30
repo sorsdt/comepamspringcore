@@ -3,20 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <import resource="loggers.xml"/>
+
     <bean id="client" class="ua.epam.spring.core.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="John Smith"/>
-    </bean>
-
-    <bean id="eventLogger" class="ua.epam.spring.core.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
-        <constructor-arg value="qwerty.log"/>
-        <constructor-arg value="2"/>
-    </bean>
-
-    <bean id="event" class="ua.epam.spring.core.beans.Event" scope="prototype">
-        <constructor-arg>
-            <bean class="java.util.Date"/>
-        </constructor-arg>
     </bean>
 
     <bean id="app" class="ua.epam.spring.core.App">
@@ -30,5 +21,4 @@
             </list>
         </property>
     </bean>
-
 </beans>

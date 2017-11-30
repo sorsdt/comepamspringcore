@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="event" class="ua.epam.spring.core.beans.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="fileLogger" class="ua.epam.spring.core.loggers.FileEventLogger" init-method="init">
+        <constructor-arg value="qwerty.log"/>
+    </bean>
+
+    <bean id="eventLogger" class="ua.epam.spring.core.loggers.CacheFileEventLogger" parent="fileLogger"
+          destroy-method="destroy">
+        <constructor-arg type="int" value="2"/>
+    </bean>
+
+</beans>
