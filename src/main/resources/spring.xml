@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
     <import resource="loggers.xml"/>
 
@@ -12,7 +14,7 @@
 
     <bean id="app" class="ua.epam.spring.core.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="cachedFileLogger"/>
         <property name="eventMessages">
             <list>
                 <value>Some event from user 1</value>
@@ -20,5 +22,14 @@
                 <value>Some event from user 3</value>
             </list>
         </property>
+
+        <property name="test">
+            <util:map map-class="java.util.TreeMap">
+                <entry key="aaa">
+                    <null/>
+                </entry>
+            </util:map>
+        </property>
     </bean>
+
 </beans>

@@ -13,7 +13,7 @@
         <constructor-arg value="qwerty.log"/>
     </bean>
 
-    <bean id="eventLogger" class="ua.epam.spring.core.loggers.CacheFileEventLogger" parent="fileLogger"
+    <bean id="cachedFileLogger" class="ua.epam.spring.core.loggers.CacheFileEventLogger" parent="fileLogger"
           destroy-method="destroy">
         <constructor-arg type="int" value="2"/>
     </bean>
