@@ -14,10 +14,10 @@ public class FileEventLogger implements EventLogger {
         filename = s;
     }
 
-    public void init() throws IOException {
+    public void init() {
         file = new File(filename);
         if (!file.canWrite()) {
-            throw new IOException(filename + " is not writable");
+            throw new RuntimeException(filename + " is not exist or writable");
         }
     }
 

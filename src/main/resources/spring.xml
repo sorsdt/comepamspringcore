@@ -22,14 +22,8 @@
                 <value>Some event from user 3</value>
             </list>
         </property>
-
-        <property name="test">
-            <util:map map-class="java.util.TreeMap">
-                <entry key="aaa">
-                    <null/>
-                </entry>
-            </util:map>
-        </property>
     </bean>
+
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
 </beans>

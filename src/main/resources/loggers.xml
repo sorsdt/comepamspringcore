@@ -9,7 +9,7 @@
         </constructor-arg>
     </bean>
 
-    <bean id="fileLogger" class="ua.epam.spring.core.loggers.FileEventLogger" init-method="init">
+    <bean id="fileLogger" class="ua.epam.spring.core.loggers.FileEventLogger">
         <constructor-arg value="qwerty.log"/>
     </bean>
 
